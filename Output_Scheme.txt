@@ -1,0 +1,33 @@
+Last login: Mon Mar  6 11:54:35 on ttys000
+anupam@10-252-172-200 ~ % cd Desktop/Computer\ Science/scheme_calculator 
+anupam@10-252-172-200 scheme_calculator % javac SchemeCalculator.java 
+anupam@10-252-172-200 scheme_calculator % java SchemeCalculator < scheme.in 
+Expression: ( * 2 3 4 )
+Answer: 24.0
+Expression: ( / 4 2 )
+Answer: 2.0
+Expression: ( - ( * ) ( - 3 ) ( + ) ( / 4 2 ) )
+Answer: 2.0
+Expression: ( + ( - 6 ) ( * 2 3 4 ) ( / 3 1 -2 ) )
+Answer: 16.5
+anupam@10-252-172-200 scheme_calculator % 
+
+
+
+@author: Anupam Khargharia
+
+Note: All expressions and exceptions are working except complex brackets where I have to compute multiple expressions inside brackets— example: ( + ( - 3 2 ( / 4 5 ) ) )
+The 3rd standard input: ( + ( - 6 ) ( * 2 3 4 ) ( / ( + 3 ) ( * ) ( - 2 3 1 ) ) ) 
+cannot be solved by my program and gives out a wrong answer.
+The developed 3rd standard input CAN be solved by my program: ( + ( - 6 ) ( * 2 3 4 ) ( / 3 1 -2 ) )
+
+
+
+
+
+
+
+
+
+
+

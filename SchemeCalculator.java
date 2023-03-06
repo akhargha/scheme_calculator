@@ -1,24 +1,43 @@
+/**
+ * @Author: Anupam Khargharia
+ * This program uses three stacks to compute scheme expressions.
+ * This program has three methods— schemesolver (main scheme calculator), calculator (basic operator calculator)
+ * and isDigit (check if expression is double).
+ *
+ * Note: All expressions and exceptions are working except complex brackets where I have to—
+ * compute multiple expressions inside brackets— example: ( + ( - 3 2 ( / 4 5 ) ) )
+ *
+ * The 3rd standard input: ( + ( - 6 ) ( * 2 3 4 ) ( / ( + 3 ) ( * ) ( - 2 3 1 ) ) )
+ * cannot be solved by my program and gives out a wrong answer.
+ *
+ * The developed 3rd standard input CAN be solved by my program: ( + ( - 6 ) ( * 2 3 4 ) ( / 3 1 -2 ) )
+ */
+
+
+
 import java.util.Scanner;
 import java.util.Stack;
+
 public class SchemeCalculator {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         while (sc.hasNext()){
             String line = sc.nextLine();
+            System.out.println("Expression: " + line);
             String[] linearray = line.split(" "); //creating tokens out of input
-            System.out.println(infixTopostfix(linearray));
+            System.out.println("Answer: " + schemesolver(linearray));
         }
     }
 
-    private static double infixTopostfix(String[] linearray){
+    private static double schemesolver(String[] linearray){
 
-        Stack<Double> opnstack = new Stack<>();
-        Stack<Double> temp = new Stack<>(); //temp stack created to reverse order of elements for oprstack to facilitate - & /
-        Stack<Character> oprstack = new Stack<>();
+        Stack<Double> opnstack = new Stack<>(); //operand stack
+        Stack<Double> temp = new Stack<>(); //temp stack created to reverse order of elements in oprstack to facilitate subtraction & division
+        Stack<Character> oprstack = new Stack<>(); //operator stack
         int opr_count = 0; //counter to capture first operator
         int exp_count = 0; //counter to consider exceptions like ( * )
         int opn_count = 0; //counter for number of operands
-        int temp_sz = temp.size(); //size of temp Stack---> Assigned seperately as temp.size() keeps updating
+        int temp_sz = temp.size(); //size of temp Stack---> Assigned seperately because temp.size() keeps updating
         char oprcnt = '*'; //counter helper to capture first operator
 
         for (int i = 0; i < linearray.length; i++){
@@ -149,11 +168,11 @@ public class SchemeCalculator {
     }
 
     //checking if the output is double by catching a numberformatexception
-    private static boolean isDigit(String s)
+    private static boolean isDigit(String point)
     {
         try
         {
-            Double.parseDouble(s);
+            Double.parseDouble(point);
         }
         catch (NumberFormatException e)
         {
